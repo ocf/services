@@ -19,8 +19,6 @@ def all_apps():
 
 class App(namedtuple('App', ('path',))):
 
-    __slots__ = ()
-
     @cached_property
     def json(self):
         with open(os.path.join(self.path, 'app.json')) as f:
