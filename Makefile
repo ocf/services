@@ -5,3 +5,7 @@ test:
 .PHONY: deploy
 deploy:
 	./deploy.py
+
+.PHONY: diff
+diff:
+	./deploy.py --diff-only
