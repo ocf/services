@@ -2,7 +2,7 @@
     "id": "/trivial",
     "cmd": null,
     "cpus": 0.1,
-    "mem": 129,
+    "mem": 128,
     "gpus": 0,
     "disk": 0,
     "instances": 3,

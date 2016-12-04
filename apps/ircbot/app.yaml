@@ -1,0 +1,49 @@
+{
+    "id": "/ircbot",
+    "cmd": null,
+    "cpus": 1,
+    "mem": 512,
+    "gpus": 0,
+    "disk": 0,
+    "instances": 1,
+    "executor": "",
+    "requirePorts": false,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [
+            {
+                "containerPath": "/etc/ocf-ircbot",
+                "hostPath": "/opt/share/docker/secrets/ircbot",
+                "mode": "RO"
+            }
+        ],
+        "docker": {
+            "image": "docker.ocf.berkeley.edu/ircbot",
+            "network": "BRIDGE",
+            "portMappings": null,
+            "privileged": false,
+            "parameters": [],
+            "forcePullImage": false
+        }
+    },
+    "portDefinitions": [
+        {
+            "port": 10005,
+            "protocol": "tcp",
+            "labels": {}
+        }
+    ],
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 0,
+        "maximumOverCapacity": 0
+    },
+    "maxLaunchDelaySeconds": 3600,
+    "backoffFactor": 1.15,
+    "backoffSeconds": 1,
+
+    # ircbot is special: we never want there to be any extra apps running
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 0,
+        "maximumOverCapacity": 0,
+    },
+}
