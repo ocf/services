@@ -4,4 +4,4 @@ test:
 
 .PHONY: deploy
 deploy:
-	./deploy
+	./deploy.py

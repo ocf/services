@@ -2,9 +2,12 @@
     "id": "/trivial",
     "cmd": null,
     "cpus": 0.1,
-    "mem": 128,
+    "mem": 129,
+    "gpus": 0,
     "disk": 0,
     "instances": 3,
+    "executor": "",
+    "requirePorts": false,
     "container": {
         "type": "DOCKER",
         "volumes": [],
@@ -44,5 +47,12 @@
             "protocol": "tcp",
             "labels": {}
         }
-    ]
+    ],
+    "maxLaunchDelaySeconds": 3600,
+    "backoffFactor": 1.15,
+    "backoffSeconds": 1,
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1,
+    },
 }
