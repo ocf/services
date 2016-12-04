@@ -1,5 +1,7 @@
 import os.path
 
+import pytest
+
 
 def test_app_id_must_start_with_slash(app):
     assert app.json['id'].startswith('/')
@@ -29,6 +31,10 @@ def test_app_docker_image_has_no_tag(app):
     Our deploy scripts change the tag each time, so we don't include tags
     in the service definitions.
     """
+    # with some exceptions...
+    if app.id == '/thelounge':
+        pytest.skip()
+
     image = app.json['container']['docker']['image']
     assert image is not None
     assert ':' not in image

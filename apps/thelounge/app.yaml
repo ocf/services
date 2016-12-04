@@ -1,0 +1,71 @@
+{
+    "id": "/thelounge",
+    "cmd": null,
+    "cpus": 1,
+    "mem": 512,
+    "disk": 0,
+    "gpus": 0,
+    "instances": 1,
+    "executor": "",
+    "requirePorts": false,
+    "container": {
+        "type": "DOCKER",
+        "volumes": [
+            {
+                "containerPath": "/home/lounge/data/config.js",
+                "hostPath": "/opt/share/docker/secrets/thelounge/config.js",
+                "mode": "RO"
+            }
+        ],
+        "docker": {
+            "image": "thelounge/lounge:2.1.0",
+            "network": "BRIDGE",
+            "portMappings": [
+                {
+                    "containerPort": 9000,
+                    "hostPort": 0,
+                    "servicePort": 10008,
+                    "protocol": "tcp",
+                    "name": "main",
+                    "labels": {}
+                }
+            ],
+            "privileged": false,
+            "parameters": [],
+            "forcePullImage": false
+        }
+    },
+    "env": {
+        "HOST": "",
+        "PORT": ""
+    },
+    "healthChecks": [
+        {
+            "path": "/",
+            "protocol": "HTTP",
+            "portIndex": 0,
+            "gracePeriodSeconds": 300,
+            "intervalSeconds": 60,
+            "timeoutSeconds": 20,
+            "maxConsecutiveFailures": 3,
+            "ignoreHttp1xx": false
+        }
+    ],
+    "labels": {
+        "HAPROXY_GROUP": "lb"
+    },
+    "portDefinitions": [
+        {
+            "port": 10008,
+            "protocol": "tcp",
+            "labels": {}
+        }
+    ],
+    "maxLaunchDelaySeconds": 3600,
+    "backoffFactor": 1.15,
+    "backoffSeconds": 1,
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1,
+    },
+}

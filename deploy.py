@@ -178,7 +178,7 @@ def main():
     client = marathon.MarathonClient(user, password, url=args.marathon)
 
     found_diff = False
-    for app in all_apps():
+    for app in sorted(all_apps()):
         if diff_app(client, app):
             found_diff = True
             if args.diff_only:
@@ -189,7 +189,6 @@ def main():
     if found_diff and args.diff_only:
         print(shell.bg_red('Differences were found!'))
         return 1
-
 
 
 if __name__ == '__main__':
