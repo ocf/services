@@ -8,13 +8,6 @@
     "instances": 3,
     "executor": "",
     "requirePorts": false,
-    "constraints": [
-        [
-            "hostname",
-            "LIKE",
-            "jaws"
-        ]
-    ],
     "container": {
         "type": "DOCKER",
         "volumes": [
