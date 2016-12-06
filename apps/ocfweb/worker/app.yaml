@@ -29,13 +29,7 @@
     "env": {
         "OCFWEB_TESTING": "0"
     },
-    "portDefinitions": [
-        {
-            "port": 10003,
-            "protocol": "tcp",
-            "labels": {}
-        }
-    ],
+    "portDefinitions": [],
     "maxLaunchDelaySeconds": 3600,
     "backoffFactor": 1.15,
     "backoffSeconds": 1,

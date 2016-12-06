@@ -26,13 +26,7 @@
             "forcePullImage": false
         }
     },
-    "portDefinitions": [
-        {
-            "protocol": "tcp",
-            "port": 10006,
-            "labels": {},
-        }
-    ],
+    "portDefinitions": [],
     "maxLaunchDelaySeconds": 3600,
     "backoffFactor": 1.15,
     "backoffSeconds": 1,
