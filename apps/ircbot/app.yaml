@@ -26,13 +26,7 @@
             "forcePullImage": false
         }
     },
-    "portDefinitions": [
-        {
-            "port": 10005,
-            "protocol": "tcp",
-            "labels": {}
-        }
-    ],
+    "portDefinitions": [],
     "upgradeStrategy": {
         "minimumHealthCapacity": 0,
         "maximumOverCapacity": 0

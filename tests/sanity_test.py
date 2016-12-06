@@ -17,6 +17,27 @@ def test_app_should_use_bridge_networking(app):
     assert app.json['container']['docker']['network'] == 'BRIDGE'
 
 
+def test_app_should_have_healthcheck_for_each_port(app):
+    """Apps should have healthchecks for each port."""
+    healthchecks = app.json.get('healthChecks', ())
+    for i, port in enumerate(app.json.get('portDefinitions', ())):
+        for healthcheck in healthchecks:
+            if (
+                    healthcheck['protocol'] in {'HTTP', 'TCP'} and
+                    healthcheck['portIndex'] == i
+            ):
+                break
+            elif healthcheck['protocol'] == 'COMMAND':
+                if '$PORT{}'.format(i) in healthcheck['command']['value']:
+                    break
+        else:
+            raise AssertionError(
+                'No healthcheck for "{}" port index {}:\n    {}'.format(
+                    app.id, i, port,
+                ),
+            )
+
+
 def test_app_paths_match_names(apps_path, app):
     """Apps should be in the right place in the repo."""
     assert (
