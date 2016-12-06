@@ -40,8 +40,10 @@
     },
     "healthChecks": [
         {
-            "protocol": "TCP",
-            "portIndex": 0,
+            "protocol": "COMMAND",
+            "command": {
+                "value": "curl -f -H 'Host: www.ocf.berkeley.edu' http://$HOST:$PORT0/"
+            },
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
             "timeoutSeconds": 20,
