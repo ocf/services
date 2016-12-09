@@ -2,7 +2,7 @@
     "id": "/ocfweb/worker",
     "cmd": null,
     "cpus": 1,
-    "mem": 128,
+    "mem": 2048,
     "gpus": 0,
     "disk": 0,
     "instances": 1,
