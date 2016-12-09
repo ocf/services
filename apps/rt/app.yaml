@@ -37,8 +37,10 @@
     },
     "healthChecks": [
         {
-            "protocol": "TCP",
-            "portIndex": 0,
+            "protocol": "COMMAND",
+            "command": {
+                "value": "test $(curl -s -o /dev/null -w '%{http_code}' -H 'Host: rt.ocf.berkeley.edu' http://$HOST:$PORT0/) -eq 401",
+            },
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
             "timeoutSeconds": 20,
