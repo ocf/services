@@ -49,7 +49,7 @@
         {
             "protocol": "COMMAND",
             "command": {
-                "value": "curl -f -H 'Host: www.ocf.berkeley.edu' http://$HOST:$PORT0/"
+                "value": "curl -f -o /dev/null -H 'Host: www.ocf.berkeley.edu' http://$HOST:$PORT0/"
             },
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
