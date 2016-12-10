@@ -13,7 +13,12 @@
             "nfs",
             "LIKE",
             "true"
-        ]
+        ],
+        [
+            "secrets",
+            "LIKE",
+            "true"
+        ],
     ],
     "container": {
         "type": "DOCKER",
