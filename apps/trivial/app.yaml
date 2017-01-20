@@ -8,6 +8,15 @@
     "instances": 3,
     "executor": "",
     "requirePorts": false,
+    "constraints": [
+        # TODO: add another category for servers -- we don't actually need
+        # secrets, just don't want to land on a desktop
+        [
+            "secrets",
+            "LIKE",
+            "true"
+        ],
+    ],
     "container": {
         "type": "DOCKER",
         "volumes": [],
