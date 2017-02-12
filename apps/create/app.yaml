@@ -5,7 +5,7 @@
     "mem": 512,
     "disk": 0,
     "gpus": 0,
-    "instances": 0,
+    "instances": 10,
     "executor": "",
     "requirePorts": false,
     "constraints": [
