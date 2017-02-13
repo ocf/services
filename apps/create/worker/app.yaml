@@ -1,5 +1,5 @@
 {
-    "id": "/create",
+    "id": "/create/worker",
     "cmd": null,
     "cpus": 0.1,
     "mem": 512,
