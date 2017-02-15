@@ -126,11 +126,13 @@ def update_app(client, app):
 
     new_json = copy.deepcopy(app.json)
 
-    if on_disk_tag[0] == deployed_tag[0]:
-        # The repo didn't change, but the version did.
+    if on_disk_tag[0] == deployed_tag[0] and on_disk_tag[1] == 'latest':
+        # The repo didn't change, and the local version is not pinned,
+        # so keep it as whatever version is currently deployed.
         new_json['container']['docker']['image'] = '{}:{}'.format(*deployed_tag)
     else:
-        # The repo changed, so reset to ${repo}:latest.
+        # The repo or local version changed, so reset to whatever the local
+        # one is. By default this is ${repo}:latest.
         new_json['container']['docker']['image'] = '{}:{}'.format(*on_disk_tag)
 
     client.deploy_app(app.id.lstrip('/'), new_json, report=unbuf_print)
