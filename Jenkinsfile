@@ -19,8 +19,7 @@ if (env.BRANCH_NAME == 'master') {
         unstash 'src'
 
         stage('deploy-apps') {
-            // TODO: right now this just shows the diff and doesn't actually deploy
-            sh 'make diff'
+            sh 'make deploy'
         }
     }
 }
