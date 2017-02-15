@@ -41,7 +41,7 @@ class App(namedtuple('App', ('path',))):
             return yaml.safe_load(f)
 
 
-def diff_json(a, b, path=''):
+def diff_json(local, deployed, path=''):
     """Diff two Marathon JSON blobs.
 
     Returns True if there are any interesting differences anywhere in the tree.
@@ -63,17 +63,22 @@ def diff_json(a, b, path=''):
     }:
         return False
 
-    if isinstance(a, dict) and isinstance(b, dict):
+    if isinstance(local, dict) and isinstance(deployed, dict):
         found_change = False
-        for key in sorted(set(a.keys()) | set(b.keys())):
-            found_change |= diff_json(a.get(key), b.get(key), path + '["{}"]'.format(key))
+        for key in sorted(set(local.keys()) | set(deployed.keys())):
+            found_change |= diff_json(local.get(key), deployed.get(key), path + '["{}"]'.format(key))
         return found_change
-    elif a != b:
+    elif local != deployed:
         if path == '["container"]["docker"]["image"]':
-            a_repo, _ = split_docker(a)
-            b_repo, _ = split_docker(b)
+            local_repo, local_version = split_docker(local)
+            deployed_repo, deployed_version = split_docker(deployed)
 
-            if a_repo == b_repo:
+            # Still update if the local version is explicitly specified
+            # (not just 'latest') and doesn't match the deployed version.
+            # This allows for pinning and updating of a version in git
+            if (local_repo == deployed_repo and
+                    local_version == 'latest' or
+                    local_version == deployed_version):
                 return False
 
         # Some things are not interesting (e.g. sometimes we omit a key, but
@@ -81,10 +86,10 @@ def diff_json(a, b, path=''):
         def interesting(thing):
             return thing not in (None, [], {})
 
-        if interesting(a) or interesting(b):
+        if interesting(local) or interesting(deployed):
             print('  Difference at {}'.format(path))
-            print('    Current value: {}'.format(shell.red(repr(b))))
-            print('    Desired value: {}'.format(shell.green(repr(a))))
+            print('    Current value: {}'.format(shell.red(repr(deployed))))
+            print('    Desired value: {}'.format(shell.green(repr(local))))
             return True
 
     return False
