@@ -3,7 +3,7 @@ test: venv install-hooks
 	tox
 
 venv: vendor/venv-update requirements-dev.txt
-	vendor/venv-update venv= -ppython3 venv install= -r requirements-dev.txt
+	vendor/venv-update venv= $@ -ppython3 install= -r requirements-dev.txt
 
 .PHONY: install-hooks
 install-hooks: venv
