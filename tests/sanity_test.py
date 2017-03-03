@@ -23,7 +23,7 @@ def test_app_should_have_healthcheck_for_each_port(app):
     for i, port in enumerate(app.json.get('portDefinitions', ())):
         for healthcheck in healthchecks:
             if (
-                    healthcheck['protocol'] in {'HTTP', 'TCP'} and
+                    healthcheck['protocol'] in {'MESOS_HTTP', 'HTTP', 'TCP'} and
                     healthcheck['portIndex'] == i
             ):
                 break
