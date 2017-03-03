@@ -51,11 +51,11 @@
             "command": {
                 "value": "curl -f -o /dev/null -H 'Host: www.ocf.berkeley.edu' http://$HOST:$PORT0/"
             },
+            "delaySeconds": 15,
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
             "timeoutSeconds": 20,
             "maxConsecutiveFailures": 3,
-            "ignoreHttp1xx": false
         }
     ],
     "labels": {
@@ -74,5 +74,10 @@
     "upgradeStrategy": {
         "minimumHealthCapacity": 1,
         "maximumOverCapacity": 1,
+    },
+    "killSelection": 'YOUNGEST_FIRST',
+    "unreachableStrategy": {
+        "inactiveAfterSeconds": 300,
+        "expungeAfterSeconds": 600,
     },
 }
