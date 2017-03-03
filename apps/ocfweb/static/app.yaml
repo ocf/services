@@ -44,13 +44,13 @@
     "healthChecks": [
         {
             "path": "/js/site.js",
-            "protocol": "HTTP",
+            "protocol": "MESOS_HTTP",
             "portIndex": 0,
+            "delaySeconds": 15,
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
             "timeoutSeconds": 20,
             "maxConsecutiveFailures": 3,
-            "ignoreHttp1xx": false
         }
     ],
     "labels": {
