@@ -5,7 +5,7 @@
     "mem": 512,
     "disk": 0,
     "gpus": 0,
-    "instances": 8,
+    "instances": 3,
     "executor": "",
     "requirePorts": false,
     "constraints": [
@@ -19,6 +19,19 @@
             "LIKE",
             "true"
         ],
+    ],
+    "healthChecks": [
+        {
+            'command': {
+                'value': 'python -m create.healthcheck',
+            },
+            'intervalSeconds': 15,
+            'delaySeconds': 15,
+            'gracePeriodSeconds': 300,
+            'maxConsecutiveFailures': 2,
+            'protocol': 'COMMAND',
+            'timeoutSeconds': 20,
+        },
     ],
     "container": {
         "type": "DOCKER",
@@ -65,4 +78,5 @@
         "inactiveAfterSeconds": 300,
         "expungeAfterSeconds": 600,
     },
+    "acceptedResourceRoles": ['*'],
 }
