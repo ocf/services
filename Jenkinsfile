@@ -1,12 +1,10 @@
 if (env.BRANCH_NAME == 'master') {
     properties([
         pipelineTriggers([
-            triggers: [
-                [
-                    $class: 'jenkins.triggers.ReverseBuildTrigger',
-                    upstreamProjects: 'ocflib/master', threshold: hudson.model.Result.SUCCESS,
-                ],
-            ]
+            upstream(
+                upstreamProjects: 'ocflib/master',
+                threshold: hudson.model.Result.SUCCESS,
+            ),
         ]),
     ])
 }
