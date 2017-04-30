@@ -75,4 +75,5 @@
         "inactiveAfterSeconds": 300,
         "expungeAfterSeconds": 600,
     },
+    "acceptedResourceRoles": ['*'],
 }
