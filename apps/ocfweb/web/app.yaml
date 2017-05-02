@@ -14,12 +14,6 @@
             "LIKE",
             "true"
         ],
-        [
-            # TODO: re-enable on jaws once cs170 ends
-            "hostname",
-            "UNLIKE",
-            "jaws"
-        ],
     ],
     "container": {
         "type": "DOCKER",
