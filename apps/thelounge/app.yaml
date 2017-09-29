@@ -25,7 +25,7 @@
             }
         ],
         "docker": {
-            "image": "thelounge/lounge:2.2.1",
+            "image": "thelounge/lounge:2.4.0",
             "network": "BRIDGE",
             "portMappings": [
                 {
