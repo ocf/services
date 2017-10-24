@@ -15,6 +15,9 @@
             "true"
         ],
     ],
+    "acceptedResourceRoles": [
+        "*"
+    ],
     "container": {
         "type": "DOCKER",
         "volumes": [
