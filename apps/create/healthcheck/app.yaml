@@ -15,6 +15,7 @@
             "true"
         ],
     ],
+    "acceptedResourceRoles": ['*'],
     "container": {
         "type": "DOCKER",
         "volumes": [
@@ -26,14 +27,17 @@
         ],
         "docker": {
             "image": "docker.ocf.berkeley.edu/create",
-            "network": "BRIDGE",
-            "portMappings": null,
             "privileged": false,
             "parameters": [],
             "forcePullImage": false
-        }
+        },
+        "portMappings": []
     },
-    "portDefinitions": [],
+    "networks": [
+        {
+            "mode": "container/bridge"
+        }
+    ],
     "upgradeStrategy": {
         "minimumHealthCapacity": 0,
         "maximumOverCapacity": 0
