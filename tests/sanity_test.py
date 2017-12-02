@@ -14,7 +14,8 @@ def test_app_should_use_bridge_networking(app):
     things, but it's easier to mess up, and right now nothing supports it.
     (But it's easy to accidentally write apps that sort-of work with it.)
     """
-    assert app.json['container']['docker']['network'] == 'BRIDGE'
+    assert len(app.json['networks']) == 1
+    assert app.json['networks'][0]['mode'] == 'container/bridge'
 
 
 def test_app_should_have_healthcheck_for_each_port(app):
