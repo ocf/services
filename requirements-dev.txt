@@ -1,5 +1,5 @@
 cached-property
 ocflib
-pre-commit
+pre-commit>=1.0
 pytest
 pyyaml

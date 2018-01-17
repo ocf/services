@@ -31,7 +31,16 @@
             "parameters": [],
             "forcePullImage": false
         },
-        "portMappings": []
+        "portMappings": [
+            {
+                "containerPort": 8888,
+                "hostPort": 0,
+                "servicePort": 10005,
+                "protocol": "tcp",
+                "name": "main",
+                "labels": {}
+            }
+        ]
     },
     "networks": [
         {
@@ -41,6 +50,21 @@
     "upgradeStrategy": {
         "minimumHealthCapacity": 0,
         "maximumOverCapacity": 0
+    },
+    "healthChecks": [
+        {
+            "path": "/",
+            "protocol": "MESOS_HTTP",
+            "portIndex": 0,
+            "delaySeconds": 15,
+            "gracePeriodSeconds": 300,
+            "intervalSeconds": 60,
+            "timeoutSeconds": 20,
+            "maxConsecutiveFailures": 3,
+        }
+    ],
+    "labels": {
+        "HAPROXY_GROUP": "lb"
     },
     "maxLaunchDelaySeconds": 3600,
     "backoffFactor": 1.15,
