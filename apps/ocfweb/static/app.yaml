@@ -55,6 +55,7 @@
             "intervalSeconds": 60,
             "timeoutSeconds": 20,
             "maxConsecutiveFailures": 3,
+            "ipProtocol": "IPv4",
         }
     ],
     "labels": {

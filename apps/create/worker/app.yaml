@@ -31,6 +31,7 @@
             'maxConsecutiveFailures': 2,
             'protocol': 'COMMAND',
             'timeoutSeconds': 20,
+            'ipProtocol': 'IPv4',
         },
     ],
     "container": {
