@@ -1,7 +1,7 @@
 {
     "id": "/rt",
     "cmd": null,
-    "cpus": 0.1,
+    "cpus": 1,
     "mem": 2048,
     "disk": 0,
     "gpus": 0,
