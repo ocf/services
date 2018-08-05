@@ -35,7 +35,7 @@
             {
                 "containerPort": 3000,
                 "hostPort": 0,
-                "servicePort": 10010,
+                "servicePort": 10006,
                 "protocol": "tcp",
                 "name": "main",
                 "labels": {}
