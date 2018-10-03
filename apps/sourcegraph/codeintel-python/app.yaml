@@ -12,7 +12,7 @@
     "container": {
         "type": "DOCKER",
         "docker": {
-            "image": "sourcegraph/codeintel-python",
+            "image": "sourcegraph/codeintel-python:18892_2018-07-27_ddc9943",
             "privileged": false,
             "forcePullImage": false
         },
