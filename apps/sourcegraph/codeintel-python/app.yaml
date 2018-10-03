@@ -35,7 +35,7 @@
     "healthChecks": [
         {
             "protocol": "MESOS_TCP",
-            "port": 2087,
+            "portIndex": 0,
             "delaySeconds": 15,
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
