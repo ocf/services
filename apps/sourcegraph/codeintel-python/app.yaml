@@ -1,51 +1,26 @@
 {
-    "id": "/sourcegraph",
+    "id": "/sourcegraph/codeintel-python",
     "cmd": null,
-    "cpus": 2,
-    "mem": 2048,
+    "cpus": 1,
+    "mem": 512,
     "disk": 0,
     "gpus": 0,
     "instances": 1,
     "executor": "",
     "requirePorts": false,
-    "constraints": [
-        [
-            "secrets",
-            "LIKE",
-            "true"
-        ],
-    ],
     "acceptedResourceRoles": ['*'],
     "container": {
         "type": "DOCKER",
-        "volumes": [
-            {
-                "containerPath": "/etc/sourcegraph",
-                "hostPath": "/opt/share/docker/secrets/sourcegraph",
-                "mode": "RW"
-            },
-            {
-                "containerPath": "/var/opt/sourcegraph",
-                "hostPath": "/opt/share/docker/sourcegraph",
-                "mode": "RW"
-            }
-        ],
         "docker": {
-            "image": "sourcegraph/server:2.11.2",
+            "image": "sourcegraph/codeintel-python",
             "privileged": false,
-            "parameters": [
-                {
-                    "key": "env-file",
-                    "value": "/opt/share/docker/secrets/sourcegraph/env-file"
-                }
-            ],
             "forcePullImage": false
         },
         "portMappings": [
             {
-                "containerPort": 7080,
+                "containerPort": 2087,
                 "hostPort": 0,
-                "servicePort": 10012,
+                "servicePort": 10013,
                 "protocol": "tcp",
                 "name": "main",
                 "labels": {}
@@ -59,9 +34,8 @@
     ],
     "healthChecks": [
         {
-            "path": "/",
-            "protocol": "MESOS_HTTP",
-            "portIndex": 0,
+            "protocol": "MESOS_TCP",
+            "port": 2087,
             "delaySeconds": 15,
             "gracePeriodSeconds": 300,
             "intervalSeconds": 60,
