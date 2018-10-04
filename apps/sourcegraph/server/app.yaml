@@ -1,5 +1,5 @@
 {
-    "id": "/sourcegraph",
+    "id": "/sourcegraph/server",
     "cmd": null,
     "cpus": 2,
     "mem": 2048,

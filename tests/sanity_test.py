@@ -54,7 +54,7 @@ def test_app_docker_image_has_no_tag(app):
     in the service definitions.
     """
     # with some exceptions...
-    if app.id in ['/thelounge', '/sourcegraph']:
+    if app.id in ['/thelounge', '/sourcegraph/server', '/sourcegraph/codeintel-python']:
         pytest.skip()
 
     image = app.json['container']['docker']['image']
