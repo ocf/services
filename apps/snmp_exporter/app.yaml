@@ -2,7 +2,7 @@
     "id": "/snmp_exporter",
     "cmd": null,
     "cpus": 1,
-    "mem": 65,
+    "mem": 64,
     "disk": 0,
     "gpus": 0,
     "instances": 1,
