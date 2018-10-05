@@ -1,5 +1,5 @@
 {
-    "id": "/snmp_exporter",
+    "id": "/snmp-exporter",
     "cmd": null,
     "cpus": 1,
     "mem": 64,
