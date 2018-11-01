@@ -29,7 +29,7 @@
         },
         "portMappings": [
             {
-                "containerPort": 8000,
+                "containerPort": 80,
                 "hostPort": 0,
                 "servicePort": 10007,
                 "protocol": "tcp",
