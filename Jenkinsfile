@@ -1,57 +1,58 @@
-if (env.BRANCH_NAME == 'master') {
-    properties([
-        pipelineTriggers([
-            upstream(
-                upstreamProjects: 'ocflib/master',
-                threshold: hudson.model.Result.SUCCESS,
-            ),
-        ]),
-    ])
-}
+pipeline {
+  // TODO: Make this cleaner: https://issues.jenkins-ci.org/browse/JENKINS-42643
+  triggers {
+    upstream(
+      upstreamProjects: (env.BRANCH_NAME == 'master' ? 'ocflib/master' : ''),
+      threshold: hudson.model.Result.SUCCESS,
+    )
+  }
 
+  agent {
+    label 'slave'
+  }
 
-try {
-    node('slave') {
-        step([$class: 'WsCleanup'])
+  options {
+    ansiColor('xterm')
+    timeout(time: 1, unit: 'HOURS')
+    timestamps()
+  }
 
-        stage('check-out-code') {
-            checkout scm
-        }
-
-        stage('test') {
-            sh 'make test'
-        }
-
-        stash 'src'
+  stages {
+    stage('check-gh-trust') {
+      steps {
+        checkGitHubAccess()
+      }
     }
 
-
-    if (env.BRANCH_NAME == 'master') {
-        node('deploy') {
-            step([$class: 'WsCleanup'])
-            unstash 'src'
-
-            stage('deploy-apps') {
-                sh 'make deploy'
-            }
-        }
+    stage('test') {
+      steps {
+        sh 'make test'
+      }
     }
 
-} catch (err) {
-    def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Failure!"
-    def message = "${env.JOB_NAME} (#${env.BUILD_NUMBER}) failed: ${env.BUILD_URL}"
-
-    if (env.BRANCH_NAME == 'master') {
-        slackSend color: '#FF0000', message: message
-        mail to: 'root@ocf.berkeley.edu', subject: subject, body: message
-    } else {
-        mail to: emailextrecipients([
-            [$class: 'CulpritsRecipientProvider'],
-            [$class: 'DevelopersRecipientProvider']
-        ]), subject: subject, body: message
+    stage('deploy-apps') {
+      when {
+        branch 'master'
+      }
+      agent {
+        label 'deploy'
+      }
+      steps {
+        sh 'make test'
+      }
     }
+  }
 
-    throw err
+  post {
+    failure {
+      emailNotification()
+    }
+    always {
+      node(label: 'slave') {
+        ircNotification()
+      }
+    }
+  }
 }
 
 // vim: ft=groovy
