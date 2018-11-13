@@ -30,6 +30,20 @@ pipeline {
       }
     }
 
+    stage('diff-apps') {
+      when {
+        not {
+          branch 'master'
+        }
+      }
+      agent {
+        label 'deploy'
+      }
+      steps {
+        sh 'make diff'
+      }
+    }
+
     stage('deploy-apps') {
       when {
         branch 'master'
@@ -38,7 +52,7 @@ pipeline {
         label 'deploy'
       }
       steps {
-        sh 'make test'
+        sh 'make deploy'
       }
     }
   }
