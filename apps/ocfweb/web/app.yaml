@@ -22,6 +22,11 @@
                 "containerPath": "/etc/ocfweb",
                 "hostPath": "/opt/share/docker/secrets/ocfweb",
                 "mode": "RO"
+            },
+            {
+                "containerPath": "/etc/ocf",
+                "hostPath": "/etc/ocf",
+                "mode": "RO"
             }
         ],
         "docker": {
