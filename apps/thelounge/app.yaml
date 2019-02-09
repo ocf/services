@@ -20,7 +20,7 @@
         "type": "DOCKER",
         "volumes": [
             {
-                "containerPath": "/home/lounge/data/config.js",
+                "containerPath": "/var/opt/thelounge/config.js",
                 "hostPath": "/opt/share/docker/secrets/thelounge/config.js",
                 "mode": "RO"
             }
