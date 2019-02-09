@@ -26,7 +26,7 @@
             }
         ],
         "docker": {
-            "image": "thelounge/lounge:2.7.1",
+            "image": "thelounge/lounge:3.0.0",
             "privileged": false,
             "parameters": [],
             "forcePullImage": false
