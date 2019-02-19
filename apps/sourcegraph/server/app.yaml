@@ -31,7 +31,7 @@
             }
         ],
         "docker": {
-            "image": "sourcegraph/server:2.13.5",
+            "image": "sourcegraph/server:3.0.1",
             "privileged": false,
             "parameters": [
                 {
